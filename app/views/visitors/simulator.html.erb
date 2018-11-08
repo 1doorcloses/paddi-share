@@ -1,0 +1,75 @@
+<div class="container-fluid d-block d-sm-none">	
+  <div class="row">    
+  	<div class="col-sm"> 	
+  		<i style="color:gray">Please note: This page is best viewed on a laptop or desktop.</i>
+  		<br/><br/>
+  	</div> 	
+	</div>
+</div>
+
+
+<h3>Ladder Simulator</h3>
+<hr/>
+
+<%#= form_tag simulator_path do %>
+<%= form_for(@match, :url => simulator_path, :html => { :role => "form" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>    
+
+<div class="container-fluid">
+  <div class="row">    
+		<div class="col-sm"> 	
+			<h4>Current Ladder</h4>
+			<% @players.each_with_index do |p,i| %>   			
+				<span style="<%= 'background-color:#D5EDDB' if @results && @player_ids.include?(p.id) %>">
+		 			<%=i+1%> <%= "#{p.first_name} #{p.last_name} #{p.rating.to_i}" %>
+		 		</span>
+		 		<br/>
+		 	<% end %>
+		</div>
+
+		<%#= render 'shared/match_entry', v_players:@players, v_results:@results %>
+		<div class="col-sm">
+			<%= render 'shared/match_entry_team1', v_players:@players, v_results:@results %>		    
+			<br/><br/><br/>
+			<%= render 'shared/match_entry_team2', v_players:@players, v_results:@results %>
+			<br/><br/><br/>
+			<button type="submit" class="btn btn-success">CALCULATE</button>
+			<br/><br/><br/>
+		 <% if @results 
+
+		 	t1_delta = @results[:team1_rating_delta].round(2)		 	
+		 	t2_delta = @results[:team2_rating_delta].round(2)
+		 	t1_delta = "+"+t1_delta.to_s if t1_delta > 0
+		 	t2_delta = "+"+t2_delta.to_s if t2_delta > 0
+		 	
+		 	%>
+		 	<h5>Results</h5>		 
+		 	<h6>Team 1</h6>
+		 	<%= @match.player1.name %> <%= t1_delta %><br/>
+		 	<%= @match.player2.name %> <%= t1_delta %>
+		 	<br/><br/>
+		 	<h6>Team 2</h6>
+		 	<%= @match.player3.name %> <%= t2_delta %><br/>
+		 	<%= @match.player4.name %> <%= t2_delta %>
+		 <% end %>
+		</div>
+
+		
+		<div class="col-sm"> 	
+			<% if @results %>
+		  	
+		  		<h3>Resulting Ladder</h3>
+					<% @new_ladder.each_with_index do |p,i| %> 
+				 		<span style="<%= 'background-color:#D5EDDB' if @player_ids.include?(p.id) %>">
+				 			<%=i+1%> <%= "#{p.first_name} #{p.last_name} #{p.rating.to_i}" %>		 		
+				 		</span>
+				 		<br/>
+				 	<% end %>			 		
+			<% end %>
+		</div>
+
+
+	  </div>  
+</div>
+<% end %>
+

@@ -1,0 +1,36 @@
+<h3>Results</h3>  
+
+<h6>Team 1</h6>					
+<%=
+prev1 = v_players.select {|p| p.id == @p1.id}.first
+new_rating1 = (@p1.rating - prev1.rating).round(2)
+new_rating1 = "+" + new_rating1.to_s if new_rating1 > 0
+"#{prev1.first_name} #{prev1.last_name} => #{new_rating1}"
+%>
+<br/>
+<%=
+prev2 = v_players.select {|p| p.id == @p2.id}.first
+new_rating2 = (@p2.rating - prev2.rating).round(2)
+new_rating2 = "+" + new_rating2.to_s if new_rating2 > 0
+"#{prev2.first_name} #{prev2.last_name} => #{new_rating2}"
+%>
+<br/>
+Total Games Won: <%= @team1_total_games %>
+<br/><br/>
+
+<h6>Team 2</h6>					
+<%=
+prev3 = v_players.select {|p| p.id == @p3.id}.first
+new_rating3 = (@p3.rating - prev3.rating).round(2)
+new_rating3 = "+" + new_rating3.to_s if new_rating3 > 0
+"#{prev3.first_name} #{prev3.last_name} => #{new_rating3}"
+%>
+<br/>
+<%=
+prev4 = v_players.select {|p| p.id == @p4.id}.first
+new_rating4 = (@p4.rating - prev4.rating).round(2)
+new_rating4 = "+" + new_rating4.to_s if new_rating4 > 0
+"#{prev4.first_name} #{prev4.last_name} => #{new_rating4}"
+%>
+<br/>
+Total Games Won: <%= @team2_total_games %>

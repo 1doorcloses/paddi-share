@@ -1,0 +1,10 @@
+<%= link_to '<< back', org_leagues_path(@org) %>
+<br/>
+<h1>New League</h1>
+
+
+<%= form_for(@league, :url => org_leagues_path(@org), :html => { :role => "form" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>    
+  <%= render 'fields', f:f %>
+<% end %>  
+

@@ -1,0 +1,28 @@
+<h2>Enter Real Match</h2>
+<hr/>
+
+<%= form_for(@match, :url => matches_path, :html => { :role => "form" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>    
+	<%#= render 'shared/match_entry', v_players:@players, v_results:@results %>
+
+	<div class="container-fluid">
+  	<div class="row">    
+  		<div class="col-sm">
+				<%= render 'shared/match_entry_date'%>		    
+			</div>
+			<div class="col-sm">
+				<%= render 'shared/match_entry_team1', v_players:@players, v_results:@results %>		    
+			</div>
+			<div class="col-sm">
+				<%= render 'shared/match_entry_team2', v_players:@players, v_results:@results %>
+			</div>			
+			<div class="col-sm">
+				<h5>Next Step</h5>				
+				<button type="submit" class="btn btn-primary">SAVE</button>
+				<%= render 'shared/match_results', v_players:@players, v_results:@results if @results %>
+			</div>
+		</div>
+<% end %>
+
+
+

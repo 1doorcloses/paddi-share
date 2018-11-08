@@ -1,0 +1,33 @@
+
+<div class="alert alert-warning" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  Friendly Notice: You are EDITING a previous match.
+</div>
+<h2>Edit Match</h2>
+<hr/>
+
+<%= form_for(@match, :url => match_path(@match), :html => { :role => "form" }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>    
+	<%#= render 'shared/match_entry', v_players:@players, v_results:@results %>
+
+	<div class="container-fluid">
+  	<div class="row">    
+  		<div class="col-sm">
+				<%= render 'shared/match_entry_date'%>		    
+			</div>
+			<div class="col-sm">
+				<%= render 'shared/match_entry_team1', v_players:@players, v_results:@results %>		    
+			</div>
+			<div class="col-sm">
+				<%= render 'shared/match_entry_team2', v_players:@players, v_results:@results %>
+			</div>
+			<div class="col-sm">
+				<h5>Next Step</h5>				
+				<button type="submit" class="btn btn-success">SAVE REAL MATCH</button>
+				<%= render 'shared/match_results', v_players:@players, v_results:@results if @results %>
+			</div>
+		</div>
+<% end %>
+
+
+

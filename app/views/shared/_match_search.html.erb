@@ -1,0 +1,11 @@
+<h5>Player Search</h5>
+  <%= form_tag(get_search, {:method => :get}) do %>
+    <select class="selectpicker" data-live-search="true" name="player_id" data-style="btn-default">
+      <option value="">Search for Player...</option>
+      <% @players.each do |p| %>
+        <option value="<%= p.id %>" <%= "selected" if @player && @player.id == p.id %>><%= p.first_name %> <%= p.last_name %></option>
+      <% end %>
+    </select>   
+    <button type="submit" class="btn btn-default btn-sm">SEARCH</button>    
+    <span style="font-size:12px"><%= link_to "CLEAR", clear_search %></span>
+  <% end %>

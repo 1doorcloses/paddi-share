@@ -1,0 +1,112 @@
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<h2>ALL MATCHES</h2>    
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Average Games'],
+          
+          <% @results.each do |r| %>
+						['<%= r.match_date.strftime('%m/%d') %>',<%= r.avg_games_per_match %>],						
+					<% end %>
+          
+        ]);
+
+        var options = {
+          title: 'Avg Games Played',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+    <!--Div that will hold the  chart-->
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+<!--
+<% @results.each do |r| %>
+	<%= r.match_date %>
+	<%= r.avg_games_per_match %>
+	<br/>
+<% end %>
+-->
+
+<hr/>
+<br/><br/>
+
+<h2>THURSDAY MATCHES</h2>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Average Games'],
+          
+          <% @results.each do |r| 
+              
+              if r.match_date.wday == 4 %>
+                ['<%= r.match_date.strftime('%m/%d') %>',<%= r.avg_games_per_match %>],           
+              <% end %>
+          <% end %>
+          
+        ]);
+
+        var options = {
+          title: 'Avg Games Played',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_thursday'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<!--Div that will hold the  chart-->
+<div id="curve_chart_thursday" style="width: 900px; height: 500px"></div>
+
+<hr/>
+<br/><br/>
+
+<h2>WEDNESDAY MATCHES</h2>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Average Games'],
+          
+          <% @results.each do |r| 
+              
+              if r.match_date.wday == 3 %>
+                ['<%= r.match_date.strftime('%m/%d') %>',<%= r.avg_games_per_match %>],           
+              <% end %>
+          <% end %>
+          
+        ]);
+
+        var options = {
+          title: 'Avg Games Played',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_wednesday'));
+
+        chart.draw(data, options);
+      }
+    </script>
+<!--Div that will hold the  chart-->
+<div id="curve_chart_wednesday" style="width: 900px; height: 500px"></div>

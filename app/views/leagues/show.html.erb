@@ -1,0 +1,24 @@
+<h2><%= @org.name %> &gt; <%= @league.name %></h2>
+<br/>
+<%= link_to 'Add Player to League', assign_org_league_path(@org,@league), { :class=>"btn btn-primary" } %>
+<br/><br/>
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>            
+      <th>Player</th>            
+      <th>Rating</th>  
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @league.players.order(:first_name,:last_name).each_with_index do |p,i| %>
+      <tr>        
+        <td><%= p.name %></td>        
+        <td><%= p.rating %></td>                
+        <td><%= link_to 'Remove from League', assign_org_league_path(@org,@league,player_id:p.id), method: :delete, :class=>"btn btn-outline-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

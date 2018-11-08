@@ -1,0 +1,40 @@
+<%
+p1 = match.player1
+p2 = match.player2
+p3 = match.player3
+p4 = match.player4
+
+winning_team = match.winning_team
+win = "<b style='color:#4CAF50'>W</b>"
+plus_minus = match.team1_rating_change > 0 ? "+" : ""
+team1_delta = "<i style='color:gray;font-size:14px'>#{plus_minus}#{match.team1_rating_change}</i>"
+plus_minus = match.team2_rating_change > 0 ? "+" : ""
+team2_delta = "<i style='color:gray;font-size:14px'>#{plus_minus}#{match.team2_rating_change}</i>"
+
+p1_span = 'highlight' if @player && @player.id == p1.id
+p2_span = 'highlight' if @player && @player.id == p2.id
+p3_span = 'highlight' if @player && @player.id == p3.id
+p4_span = 'highlight' if @player && @player.id == p4.id
+%>
+
+  <td><span title="<%= match.played_at %>"><%= match.played_at.to_date %></span></td>                
+  <td>          
+    <span class="<%= p1_span %>"><%= "#{p1.name} (#{match.player1_rating_start})" %> <%= win.html_safe if winning_team == 1 %></span> <br/>
+    <span class="<%= p2_span %>"><%= "#{p2.name} (#{match.player2_rating_start})" %> <%= win.html_safe if winning_team == 1 %></span>
+    
+    <br/><i style="color:gray">-vs-</i><br/>
+  	<span class="<%= p3_span %>"><%= "#{p3.name} (#{match.player3_rating_start})" %> <%= win.html_safe if winning_team == 2 %></span> <br/>
+    <span class="<%= p4_span %>"><%= "#{p4.name} (#{match.player4_rating_start})" %> <%= win.html_safe if winning_team == 2 %></span>
+  </td>
+  <td>
+    <%= match.get_score %><br/>          
+  </td>        
+  <td>
+    <span class="<%= p1_span %>"><%= "#{p1.name} (#{match.player1_rating_end})" %> <%= team1_delta.html_safe %></span> <br/>
+    <span class="<%= p2_span %>"><%= "#{p2.name} (#{match.player2_rating_end})" %> <%= team1_delta.html_safe %></span>
+    <br/><br/>
+    <span class="<%= p3_span %>"><%= "#{p3.name} (#{match.player3_rating_end})" %> <%= team2_delta.html_safe %></span> <br/>
+    <span class="<%= p4_span %>"><%= "#{p4.name} (#{match.player4_rating_end})" %> <%= team2_delta.html_safe %></span>
+  </td>
+  
+  

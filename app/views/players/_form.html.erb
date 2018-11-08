@@ -1,0 +1,42 @@
+<%= form_with(model: player, local: true) do |form| %>
+  <% if player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="form-group">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, :class=>"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, :class=>"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, :class=>"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, :class=>"form-control" %>
+  </div>
+
+  <% if current_user.email.include?("haller") %>
+    <div class="form-group">
+      <%= form.label :rating %>
+      <%= form.text_field :rating, :class=>"form-control" %>
+    </div>
+  <% end %>
+  
+  <button type="submit" class="btn btn-primary">Save</button>
+<% end %>

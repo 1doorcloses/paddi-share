@@ -1,0 +1,25 @@
+
+
+<div class="col-sm">
+	<h3 >Enter Match</h3>      				
+	<br/>
+	<% if v_results %>
+		<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Show or change match inputs</a><br/>
+	<% end %>
+	<div id="collapseExample" <%= 'class="collapse"'.html_safe if v_results %>>	      		      
+		<%= render 'shared/match_entry_team1', v_players:v_players, v_results:v_results %>		    
+		<br/><br/><br/>
+		<%= render 'shared/match_entry_team2', v_players:v_players, v_results:v_results %>
+		<br/><br/><br/>
+		<button type="submit" class="btn btn-success">CALCULATE</button>
+	</div>
+	<br/>
+	<hr/>			      
+	<%= render 'shared/match_results', v_players:v_players, v_results:v_results if v_results %>
+</div>
+	    
+
+				
+		 		
+
+

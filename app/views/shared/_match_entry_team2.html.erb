@@ -1,0 +1,35 @@
+<h5>Team 2</h5>
+<select class="selectpicker" data-live-search="true" name="match[player3_id]" data-style="btn-info" <%= "disabled" if @match.id.present? %>>
+  <option value="">Choose Player 1...</option>
+  <% v_players.each do |p| %>
+    <option value="<%= p.id %>" <%= "selected" if @match.player3_id == p.id %>><%= p.first_name %> <%= p.last_name %></option>
+  <% end %>
+</select>     
+<br/><br/>
+<select class="selectpicker" data-live-search="true" name="match[player4_id]" data-style="btn-info" <%= "disabled" if @match.id.present? %>>
+  <option value="">Choose Player 2...</option>
+  <% v_players.each do |p| %>
+    <option value="<%= p.id %>" <%= "selected" if @match.player4_id == p.id %>><%= p.first_name %> <%= p.last_name %></option>
+  <% end %>       
+</select>
+<br/><br/>
+Set 1 - Games Won: <select name="match[team2_set1_games]"  style="width:70px;">
+  <option value="0">...</option>
+  <% (0..7).each do |n| %>
+    <option value="<%=n%>" <%= "selected" if @match.team2_set1_games == n %>><%=n%></option>
+  <% end %>
+ </select>
+<br/><br/>
+Set 2 - Games Won: <select name="match[team2_set2_games]"  style="width:70px;">
+  <option value="0">...</option>
+  <% (0..7).each do |n| %>
+    <option value="<%=n%>" <%= "selected" if @match.team2_set2_games == n %>><%=n%></option>
+  <% end %>
+ </select>
+<br/><br/>
+Set 3 - Games Won: <select name="match[team2_set3_games]"  style="width:70px;">
+  <option value="0">...</option>
+  <% (0..7).each do |n| %>
+    <option value="<%=n%>" <%= "selected" if @match.team2_set3_games == n %>><%=n%></option>
+  <% end %>
+ </select>

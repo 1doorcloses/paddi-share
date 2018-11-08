@@ -1,0 +1,47 @@
+<div class="container-fluid d-block d-sm-none">	
+  <div class="row">    
+  	<div class="col-sm"> 	
+  		<i style="color:gray">Please note: This page is best viewed on a laptop or desktop.</i>
+  		<br/><br/>
+  	</div> 	
+	</div>
+</div>
+
+
+<h3>The Town Club &gt; Simulator</h3>
+<hr/>
+
+<%= form_tag simulator_path do %>
+
+<div class="container-fluid">
+  <div class="row">    
+		<div class="col-sm"> 	
+			<h3>Ladder Start</h3>
+			<% @players.each_with_index do |p,i| %>   			
+				<span style="<%= 'background-color:#D5EDDB' if @results && (p.id == @p1.id || p.id == @p2.id || p.id == @p3.id || p.id == @p4.id) %>">
+		 			<%=i+1%> <%= "#{p.first_name} #{p.last_name} #{p.rating}" %>
+		 		</span>
+		 		<br/>
+		 	<% end %>
+		</div>
+
+		<%= render 'shared/match_entry', v_players:@players, v_results:@results %>
+
+		<div class="col-sm"> 	
+			<% if @results %>
+		  	
+		  		<h3>New Ladder</h3>
+					<% @new_ladder.each_with_index do |p,i| %> 
+				 		<span style="<%= 'background-color:#D5EDDB' if p.id == @p1.id || p.id == @p2.id || p.id == @p3.id || p.id == @p4.id %>">
+				 			<%=i+1%> <%= "#{p.first_name} #{p.last_name} #{p.rating.round(0)}" %>		 		
+				 		</span>
+				 		<br/>
+				 	<% end %>			 		
+			<% end %>
+		</div>
+
+
+	  </div>  
+</div>
+<% end %>
+

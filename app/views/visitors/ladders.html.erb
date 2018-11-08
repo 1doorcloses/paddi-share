@@ -1,0 +1,27 @@
+
+<h4>Ladder: <%= @league.org.name %> &gt; <%= @league.name %></h4>
+<p class="text-muted">
+  This page is formatted so David can copy and paste it into the spreadsheet with minimal effort.
+</p>
+
+<!-- Trigger -->
+<button class="clipboard-btn btn-success" data-clipboard-action="copy" data-clipboard-target="#ladder_rows">
+    Copy to clipboard
+</button>
+<div id="nothing">&nbsp;</div>
+<br/><br/>
+<table class="table table-sm" style="font-size:10px">  
+  <tbody id="ladder_rows">
+    <% @players.each_with_index do |player,rank| %>
+      <tr>          
+      	<td><%= rank + 1 %></td>
+      	<td><%= player.rating.round(0).to_i %></td>
+        <td><%= player.first_name %></td>
+        <td><%= player.last_name %></td>        
+        <td style="opacity: 0;"><%= player.phone %></td>
+        <td style="opacity: 0;"><%= player.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

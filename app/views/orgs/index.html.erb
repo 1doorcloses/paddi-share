@@ -1,0 +1,30 @@
+<h2>Organizations</h2>
+<p class="text-muted">
+  Organizations have leagues. Leagues consist of players.
+</p>
+<br/>
+<%= link_to 'Create New Org', new_org_path, { :class=>"btn btn-primary" } %>
+<br/><br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Leagues</th>      
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orgs.each do |org| %>
+      <tr>
+        <td><%= link_to org.name, org_leagues_path(org) %></td>                
+        <td><%= org.leagues.count %> league(s)</td>        
+        <td><%= link_to 'Edit', edit_org_path(org) %></td>
+        <td><%= link_to 'Delete', org, method: :delete, :class=>"btn btn-outline-danger btn-sm", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

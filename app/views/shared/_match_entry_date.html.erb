@@ -1,0 +1,22 @@
+<h5>Match Date</h5>
+<%
+
+today = DateTime.current
+
+played_at_date = @match.played_at.to_date if @match.played_at.present?
+today = today.change({ hour: @match.played_at.hour, min: @match.played_at.min, sec: @match.played_at.sec }) if @match.played_at.present?
+
+yesterday = today - 1.days
+day = yesterday
+
+
+%>
+<select class="selectpicker" data-live-search="true" name="match[played_at]" data-style="btn-info">
+  <option value="<%= today %>" <%= "selected" if played_at_date && played_at_date.to_date == today.to_date %>>Today <%#= today.to_date %></option>
+  <option value="<%= yesterday %>" <%= "selected" if played_at_date && played_at_date.to_date == yesterday.to_date %>>Yesterday <%#= yesterday.to_date %></option>  
+  <% (1..21).each do |i| 
+  		day = day - 1.days
+  		%>
+		<option value="<%= day %>" <%= "selected" if played_at_date && played_at_date.to_date == day.to_date %>><%= day.strftime('%A :: %_m-%-d-%Y') %></option>
+	<% end %>				
+</select>

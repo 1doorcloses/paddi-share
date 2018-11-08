@@ -1,0 +1,24 @@
+<h2>Matches</h2>
+<br/>
+<%= render 'shared/match_search', get_search:scoreboard_path, clear_search:scoreboard_path %>
+<br/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Start</th>            
+      <th>Result</th>      
+      <th>End</th>                        
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match|  %>
+      <tr>
+        <%= render 'shared/match_summary', match:match %>              
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @matches, theme: 'twitter-bootstrap-4' %>
